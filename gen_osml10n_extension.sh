@@ -19,8 +19,8 @@ done
 # download country_osm_grid.sql from nominatim if not available
 if ! [ -f "country_osm_grid.sql" ]; then
   rm -f country_osm_grid.sql
-  #echo -n "Trying to download country_grid.sql.gz from nominatim.org... "
-  #curl -s http://www.nominatim.org/data/country_grid.sql.gz |gzip -d >country_osm_grid.sql
+  echo -n "Trying to download country_grid.sql.gz from nominatim.org... "
+  curl -s http://www.nominatim.org/data/country_grid.sql.gz |gzip -d >country_osm_grid.sql
 
   if ! [ -s country_osm_grid.sql ]; then
     rm -f country_osm_grid.sql
@@ -80,6 +80,5 @@ CREATE or REPLACE FUNCTION osml10n_version() RETURNS TEXT AS \$\$
 \$\$ LANGUAGE 'plpgsql' IMMUTABLE;
 " >>osml10n--$2.sql
 
-cat country_osm_grid.sql >osml10n_country_osm_grid.data
-cat boundaries/boundaries.data >>osml10n_country_osm_grid.data
+cat country_osm_grid2.sql >osml10n_country_osm_grid.data
 
